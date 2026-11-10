@@ -2,7 +2,7 @@
 
 **Andrey Pokotilo** · Backend engineering, integrations, data pipelines, and cloud operations.
 
-Runnable examples based on problems I worked on in a team product. The implementations in this repository were written for the portfolio and use fictional records and local test doubles.
+This portfolio includes [selected project source](source/README.md) from a team product and runnable examples based on the same engineering problems. The examples use fictional records and local test doubles.
 
 ## Explore the work
 
