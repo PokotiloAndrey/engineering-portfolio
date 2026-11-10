@@ -31,6 +31,26 @@ node --test edge/worker.test.mjs
 
 The Python demo prints attribution totals, a duplicate webhook result, a delayed mart, a UTC booking window, and a churn review candidate. The tests exercise edge request signing and routing with an in-memory backend binding.
 
+## Replay the data workflow
+
+Run the [offline replay](portfolio/replay.py) with an unused output path.
+
+```bash
+python -m portfolio.replay --csv /tmp/portfolio-registrations.csv
+```
+
+The replay writes one row per referral code and registration date, reports daily attribution totals, verifies signed registration events, and proposes click ID updates for uniquely matched contacts. It uses a local event ledger and a deterministic stand-in for the AI analysis. The [review code](portfolio/review.py) only requests an analysis once the inactivity window is complete and validates evidence references before marking the report for human review.
+
+The [PostgreSQL migration](examples/postgres/001_daily_registration.sql) models a daily reporting mart in a dedicated demo schema. The [smoke test](examples/postgres/smoke.sql) checks a repeated import, a missing day, and a completed day with zero registrations. Run both in an empty local PostgreSQL database.
+
+```bash
+psql -X -v ON_ERROR_STOP=1 -d portfolio_demo \
+  -f examples/postgres/001_daily_registration.sql \
+  -f examples/postgres/smoke.sql
+```
+
+The replay and SQL fixtures are independent examples. All event, contact, and report data in them are fictional.
+
 ## How the examples fit together
 
 ```mermaid
