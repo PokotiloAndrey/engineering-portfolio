@@ -1,0 +1,4 @@
+status,external_id,refcode,region,click_id
+active,contact-001,demo-alpha,north,click-demo-01
+inactive,contact-002,demo-beta,south,
+active,contact-003,demo-gamma,north,
